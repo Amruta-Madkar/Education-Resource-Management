@@ -116,6 +116,8 @@ class RadioGroupWidget extends State {
       child: RaisedButton(
         textColor: Colors.white,
           color: Color(0xFF0D47A1),
+          shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25)),
           
           child: Text(
             "NEXT",

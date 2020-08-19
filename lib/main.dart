@@ -1,4 +1,6 @@
+import 'package:ERM/Chatbot.dart';
 import 'package:flutter/material.dart';
+import 'HomePage.dart';
 import 'SignUp.dart';
 import 'LoginPage.dart';
 import 'Schedule.dart';
@@ -24,6 +26,8 @@ class App extends StatelessWidget{
          'SignUp':(context)=>SignUp(),
          'Schedule':(context)=>Schedule(),
          'ScheduleNext':(context)=>ScheduleNext(),
+         'HomePage':(context)=> Dashboard(),
+         'Chatbot':(context)=> Chatbot(),
          
       },
       
@@ -33,3 +37,4 @@ class App extends StatelessWidget{
 }
 
 
+ 

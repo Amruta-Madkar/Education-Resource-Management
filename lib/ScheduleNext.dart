@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 
+import 'Chatbot.dart';
 import 'ScheduleNext.dart';
 class ScheduleNext extends StatefulWidget {
   @override
@@ -129,7 +130,9 @@ class SubmitButton extends StatelessWidget {
               textColor: Colors.white,
               color: Color(0xFF0D47A1),
               
-              
+               shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25)),
+          
               child: Text('SUBMIT'),
               
               

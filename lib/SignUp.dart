@@ -1,6 +1,8 @@
+import 'package:ERM/Chatbot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
 import 'package:ERM/sd.dart';
+import 'HomePage.dart';
 import 'LoginPage.dart';
 import 'Schedule.dart';
 
@@ -37,7 +39,7 @@ class _SignUpState extends State<SignUp>{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Image.asset('lib/img/logo.png',height: 60.0,width: 150.0,),  
+            Image.asset('lib/img/logo.png',height: 50.0,width: 150.0,),  
              /*Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -126,7 +128,7 @@ class _SignUpState extends State<SignUp>{
           fontSize: 16.0,
         ),
         border: OutlineInputBorder(
-          //borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(25.0),
           
         ),
         
@@ -154,9 +156,12 @@ class SubmitButton extends StatelessWidget {
       ),
       child: RaisedButton(
           color: Color(0xFF0D47A1),
+           shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25)),
+          
           
           child: Text(
-            "SUBMIT",
+            "SIGN UP",
             style: TextStyle(
                 color: Colors.white,
             fontSize: 18.0,),
@@ -169,7 +174,7 @@ class SubmitButton extends StatelessWidget {
     );
   }
   Future navigateToSubPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Schedule()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>Dashboard()));
   }
 }
 
