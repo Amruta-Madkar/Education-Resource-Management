@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:ERM/sd.dart';
 
 import 'HomePage.dart';
+import 'Rating.dart';
 import 'Schedule.dart';
 import 'SignUp.dart';
-
-
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 
 
@@ -16,7 +17,14 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
-
+ 
+ String url= 'https://education-resource-management.herokuapp.com/';
+Future<String> LOGIN() async {
+  var response= 
+  await http.get(Uri.encodeFull(url), headers: {"Accept": "application/json"});
+  
+  print(response.body);
+ }
   bool _isHidden = true;
 
   void _toggleVisibility(){
@@ -40,25 +48,7 @@ class _LoginPageState extends State<LoginPage>{
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
              Image.asset('lib/img/logo.png',height: 50.0,width: 150.0,),  
-             /*Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/background.jpg"),
-            fit: BoxFit.cover,
-          ),
-        ),
-        child: null /* add child content here */,
-      ),*/
             
-            
-           /* Text(
-              'Logo',
-              style: TextStyle(
-                font Size: 50.0,
-                fontWeight: FontWeight.bold,
-                fontFamily: "Pacifico"
-              ),
-            ),*/
             SizedBox(height: 40.0,),
             
             Text(
@@ -147,34 +137,7 @@ class _LoginPageState extends State<LoginPage>{
     );
   }
 
-  /*Widget buildButtonContainer(){
-    return Container(
-      height: 56.0,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-       // borderRadius: BorderRadius.circular(20.0),
-        gradient: LinearGradient(
-           
-          colors: [
-            Color(0xFF0D47A1),
-            Color(0xFF0D47A1)
-          ],
-          begin: Alignment.centerRight,
-          end: Alignment.centerLeft
-        ),
-      ),
-      child: Center(
-        child: Text(
-          "LOGIN",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18.0,
-          ),
-        ),
-      ),
-    );
-
-  }*/
+  
 }
 class SubmitButton extends StatelessWidget {
 

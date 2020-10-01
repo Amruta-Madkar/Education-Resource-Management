@@ -1,8 +1,25 @@
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
+import 'package:http/http.dart' as http;
 
 import 'Chatbot.dart';
+import 'Rating.dart';
 import 'ScheduleNext.dart';
+//import 'package:universal_html/html.dart';
+import 'dart:convert';
+
+//get and post request*************************************************************
+/*void main() {
+  HttpRequest.getString('https://education-resource-management.herokuapp.com/StudyPlan/readOne/0')
+    .then((res)
+  {
+    var obj = json.decode(res);
+    print(obj['PlanName']);
+  });
+}***************************************************************************/
 class ScheduleNext extends StatefulWidget {
   @override
   RadioGroupWidget createState() => RadioGroupWidget();
@@ -25,19 +42,23 @@ class RadioGroupWidget extends State {
   List<ScheduleList> fList = [
     ScheduleList(
       index: 1,
-      name: "2020",
+      name: "12 Months Plan",
     ),
     ScheduleList(
       index: 2,
-      name: "2021",
+      name: "6 Months Plan",
     ),
     ScheduleList(
       index: 3,
-      name: "2022",
+      name: "5 Months Plan",
     ),
     ScheduleList(
       index: 4,
-      name: "2023",
+      name: "4 Months Plan",
+    ),
+     ScheduleList(
+      index: 5,
+      name: "3 Months Plan",
     ),
     
   ];
@@ -72,7 +93,7 @@ class RadioGroupWidget extends State {
               ),
               Image.asset('lib/img/logo.png',height: 100.0,width: 150.0,), 
               Text(
-              "For which year you want the Schedule ?",
+              "which study plan you want ?",
               style: TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
@@ -146,7 +167,7 @@ class SubmitButton extends StatelessWidget {
     
   }
   Future navigateToSubPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => ScheduleNext()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MyHomePage()));
   }
 }
 

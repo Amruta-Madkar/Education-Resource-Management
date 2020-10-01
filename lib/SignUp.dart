@@ -1,21 +1,77 @@
 import 'package:ERM/Chatbot.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
-import 'package:ERM/sd.dart';
+
 import 'HomePage.dart';
 import 'LoginPage.dart';
 import 'Schedule.dart';
-
-
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+//import 'dart:io';
+//import 'package:universal_html/html.dart';
 
 
 class SignUp extends StatefulWidget{
+   SignUp({Key key}) : super(key: key);
   @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp>{
+  //API call*************************************************************************
+/*_getUserApi() async {
+  var httpClient = new HttpClient();
+  /*var uri = new Uri.https('https://education-resource-management.herokuapp.com/');
+  var request = await httpClient.getUrl(uri);
+  var response = await request.close();
+  var responseBody = await response.transform(UTF8.decoder).join();
+  return responseBody;*/
+  const url = 'https://education-resource-management.herokuapp.com/User';
+final const response = await http.get(url);
+print(response.body);
+ 
+  // Sending a POST request
+const url = 'https://education-resource-management.herokuapp.com/User';
+const payload = {online: false};
+const response = await http.post(url, body: payload);
+print(response.statusCode); // 200
+
+ 
+
+// Sending a POST request with headers
+const headers = {'Content-Type': 'application/json'};
+const response_1 = await http.post(url, headers: headers, body: payload);
+print(response_1.statusCode); // 200
+
+}
+  
+ String url= 'https://education-resource-management.herokuapp.com/User';
+Future<String> LOGIN() async {
+  var response= 
+  await http.get(Uri.encodeFull(url), headers: {"Accept": "application/json"});
+  
+  print(response.body);
+}
+ /* // Sending a GET request
+const url = 'https://education-resource-management.herokuapp.com/User';
+final const response = await http.get(url);
+print(response.body);
+ 
+  // Sending a POST request
+const url = 'https://education-resource-management.herokuapp.com/User';
+const payload = {online: false};
+const response = await http.post(url, body: payload);
+print(response.statusCode); // 200
+
+ 
+
+// Sending a POST request with headers
+const headers = {'Content-Type': 'application/json'};
+const response_1 = await http.post(url, headers: headers, body: payload);
+print(response_1.statusCode); // 200
+}*/************************************************************************************************/
+
+ 
 
   bool _isHidden = true;
 
@@ -24,14 +80,17 @@ class _SignUpState extends State<SignUp>{
       _isHidden = !_isHidden;
     });
   }
+  
 
   @override
   Widget build(BuildContext context){
     return Scaffold(
+      
       resizeToAvoidBottomPadding: false,
       
       body: Container(
         padding: EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0),
+        
         //margin: new EdgeInsets.symmetric(horizontal: 20.0),
         decoration: BoxDecoration(image: DecorationImage(image: AssetImage("lib/img/bg.jpg"), 
         fit: BoxFit.cover),),
@@ -69,14 +128,20 @@ class _SignUpState extends State<SignUp>{
                 color: Theme.of(context).primaryColor
               ),
             ),
+            
             SizedBox(height: 20.0,),
             buildTextField("FullName"),
+           
             SizedBox(height: 20.0,),
             buildTextField("Email"),
+            
             SizedBox(height: 20.0,),
             buildTextField("Mobile"),
+            
             SizedBox(height: 20.0,),
             buildTextField("Password"),
+           
+        
             SizedBox(height: 20.0,),
             
             SizedBox(height: 50.0),
@@ -115,11 +180,13 @@ class _SignUpState extends State<SignUp>{
         ),
       ),
     );
+     
   }
 
   Widget buildTextField(String hintText){
     return TextField(
       
+            
       decoration: InputDecoration(
         
         hintText: hintText,
@@ -132,13 +199,18 @@ class _SignUpState extends State<SignUp>{
           
         ),
         
+        
         prefixIcon: hintText == "Email" ? Icon(Icons.email) : Icon(Icons.lock),
         suffixIcon: hintText == "Password" ? IconButton(
           onPressed: _toggleVisibility,
           icon: _isHidden ? Icon(Icons.visibility_off) : Icon(Icons.visibility),
         ) : null,
+        
       ),
       obscureText: hintText == "Password" ? _isHidden : false,
+      
+        
+      
     );
   }
 }
@@ -174,39 +246,30 @@ class SubmitButton extends StatelessWidget {
     );
   }
   Future navigateToSubPage(context) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) =>Dashboard()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) =>LoginPage()));
   }
 }
 
-  /*Widget buildButtonContainer(){
-    return Container(
-      height: 56.0,
-      
-      
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        
-        //borderRadius: BorderRadius.circular(20.0),
-        gradient: LinearGradient(
-           
-          colors: [
-            Color(0xFF0D47A1),
-            Color(0xFF0D47A1)
-          ],
-          begin: Alignment.centerRight,
-          end: Alignment.centerLeft
-        ),
-      ),
-      child: Center(
-        
-        child: Text(
-          "SIGN UP",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18.0,
-          ),
-        ),
-      ),
-    );
 
-  }*/
+ //POST Request***********************************************************************
+ /* void main() async {
+ var url = 'https://education-resource-management.herokuapp.com/User';
+var data = { 'online' : 'false' };
+  
+   HttpRequest.request(
+    url,
+    method: 'POST',
+    sendData: json.encode(data),
+    requestHeaders: {
+      'Content-Type': 'application/json; charset=UTF-8'
+    }
+  )
+  .then((resp) {
+    print(resp.responseUrl);
+    print(resp.responseText);           
+  });
+  }********************************************************************************************/
+
+ 
+
+
